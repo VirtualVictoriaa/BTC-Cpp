@@ -369,7 +369,7 @@ struct Pokemon {
 
 void printPokemon (Pokemon p) {
     printf("%s\nID #%d\nType %s\n", p.name, p.id, p.type);
-    printf("Level %d\nHP %d\nAttack %d\nDefense %d\nSpeed %d\n", p.level, p.hp, p.attack, p.defense, p.speed);
+    printf("Level %d\nHP %d\nAttack %d\nDefense %d\nSpeed %d\n", p.level.c_string(), p.hp, p.attack, p.defense, p.speed);
     cout << "Trainer " << p.trainer.name << "\nAge " << p.trainer.age << "\nBadges " << p.trainer.badges << endl;
 }
 
