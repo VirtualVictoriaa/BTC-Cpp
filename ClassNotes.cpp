@@ -348,3 +348,49 @@ int main() {
     } while (!sorted);
     cout << chars << endl;
 }
+
+struct Trainer { //structs are public by default, useless if not
+    string name;
+    int age;
+    string pokemon;
+    int badges;
+};
+struct Pokemon {
+    Trainer trainer;
+    int id;
+    string name;
+    string type;
+    int level;
+    int hp;
+    int attack;
+    int defense;
+    int speed;
+};
+
+void printPokemon (Pokemon p) {
+    printf("%s\nID #%d\nType %s\n", p.name, p.id, p.type);
+    printf("Level %d\nHP %d\nAttack %d\nDefense %d\nSpeed %d\n", p.level, p.hp, p.attack, p.defense, p.speed);
+    cout << "Trainer " << p.trainer.name << "\nAge " << p.trainer.age << "\nBadges " << p.trainer.badges << endl;
+}
+
+int main() {
+    Trainer ash;
+    ash.name = "Ash Ketchum";
+    ash.age = 10;
+    ash.pokemon = "Pikachu";
+    ash.badges = 8;
+
+    Pokemon pikachu;
+    pikachu.name = "Pikachu";
+    pikachu.type = "Electric";
+    pikachu.level = 5;
+    pikachu.hp = 35;
+    pikachu.attack = 55;
+    pikachu.defense = 40;
+    pikachu.speed = 90;
+
+    cout << ash.name << " is " << ash.age << " years old and has " << ash.badges << " badges." << endl;
+    cout << ash.name << " has a " << ash.pokemon << " that is a level " << pikachu.level << " " << pikachu.type << " type." << endl;
+    cout << ash.pokemon << " has " << pikachu.hp << " HP, " << pikachu.attack << " attack, " << pikachu.defense << " defense, and " << pikachu.speed << " speed." << endl;
+    return 0;
+}
