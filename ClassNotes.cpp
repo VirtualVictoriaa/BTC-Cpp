@@ -394,3 +394,58 @@ int main() {
     cout << ash.pokemon << " has " << pikachu.hp << " HP, " << pikachu.attack << " attack, " << pikachu.defense << " defense, and " << pikachu.speed << " speed." << endl;
     return 0;
 }
+
+struct Computer {
+    int ram_gb;
+    float cpu_ghz;
+    string manufacturer;
+    string model;
+};
+
+class Computer_C {  //class is private by default
+    uint16_t ram_gb;
+    float cpu_ghz;
+    string manufacturer;
+    string model;
+public:
+    int getRam() {
+        return (*this).ram_gb;   //pointer to whatever you're working with in the moment
+         // or this->ram_gb
+    }
+    string getModel() {
+        return this->model;
+};
+
+class Compter_D {
+public:
+    Computer_D(int ram_gb, float cpu_ghz, string manufacturer, string model) {
+        this->ram_gb = ram_gb;
+        this->cpu_ghz = cpu_ghz;
+        this->manufacturer = manufacturer;
+        this->model = model;
+    }
+private:
+    int ram_gb;
+    float cpu_ghz;
+    string manufacturer;
+    string model;
+protected:
+    int getRam() {
+        return this->ram_gb;
+    }
+    string getModel() {
+        return this->model;
+    }
+friend class Computer_C; //allows Computer_C to access private members of Computer_D
+};
+
+}
+
+int main() {
+    Computer lappy = {2, 0.5, "Dell", "Biz"};
+    cout << lappy.model <<endl;
+    Computer_C lappy_c;
+    cout << lappy_c.model << endl;
+    cout << lappy_c.getRam() << endl;
+    cout << lappy_c.getModel() << endl;
+};
