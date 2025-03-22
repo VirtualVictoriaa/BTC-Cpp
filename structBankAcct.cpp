@@ -133,10 +133,10 @@ int main() {
                     bool found = false;
                     for (int i = 0; i < count; i++) {     // Loop through accounts
                         if (accounts[i].id == id) {
-                            for (int j = i; j < count - 1; j++) {
+                            for (int j = i; j < count - 1; j++) { // Shift accounts
                                 accounts[j] = accounts[j + 1];
                             }
-                            count--;
+                            count--;                     // Decrement count
                             found = true;
                             break;
                         }
@@ -170,7 +170,7 @@ int main() {
                             toFound = true;
                         }
                     }
-                    if (!fromFound || !toFound) {
+                    if (!fromFound || !toFound) {        // If one or both accounts are not found print message
                         cout << "One or both accounts not found.\n";
                     }
                     break;
