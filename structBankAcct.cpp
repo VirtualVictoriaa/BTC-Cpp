@@ -52,7 +52,7 @@ int main() {
     try {
         do {
             printAccounts(accounts, count);
-            cout << "(D) Deposit, (W) Withdraw, (A) Add Account, (Q) Quit: ";
+            cout << "(D) Deposit, (W) Withdraw, (T) Transfer, (A) Add Account, (R) Remove Account, (Q) Quit: ";
             cin >> selection;
 
             switch (selection) {
@@ -123,10 +123,63 @@ int main() {
                     count++;
                     break;
                 }
+                case 'R':
+                case 'r': {
+                    cout << "Remove\n";
+                    cout << "Enter account id to remove: ";
+                    int id;
+                    cin >> id;
+
+                    bool found = false;
+                    for (int i = 0; i < count; i++) {     // Loop through accounts
+                        if (accounts[i].id == id) {
+                            for (int j = i; j < count - 1; j++) {
+                                accounts[j] = accounts[j + 1];
+                            }
+                            count--;
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (!found) {
+                        cout << "Account not found.\n";
+                    }
+                    break;
+                }
+                case 'T':
+                case 't': {                               // Transfer money from one account to another
+                    cout << "Transfer\n";
+                    cout << "Enter account id to transfer from: ";
+                    int idFrom;
+                    cin >> idFrom;
+                    cout << "Enter account id to transfer to: ";
+                    int idTo;
+                    cin >> idTo;
+                    cout << "Enter transfer amount: ";
+                    float amount;
+                    cin >> amount;
+
+                    bool fromFound = false, toFound = false;
+                    for (int i = 0; i < count; i++) {     // Loop through accounts
+                        if (accounts[i].id == idFrom) {
+                            accounts[i].withdraw(amount); // Withdraw amount
+                            fromFound = true;
+                        }
+                        if (accounts[i].id == idTo) {
+                            accounts[i].deposit(amount);  // Deposit amount
+                            toFound = true;
+                        }
+                    }
+                    if (!fromFound || !toFound) {
+                        cout << "One or both accounts not found.\n";
+                    }
+                    break;
+                }
                 case 'Q':
-                case 'q':
+                case 'q': {
                     cout << "Goodbye!\n";
                     break;
+                }
                 default:
                     cout << "Invalid selection\n";
             }
