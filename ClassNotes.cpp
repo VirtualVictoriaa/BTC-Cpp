@@ -449,3 +449,6 @@ int main() {
     cout << lappy_c.getRam() << endl;
     cout << lappy_c.getModel() << endl;
 };
+ int birds = 10;
+ int murders = 3;
+ cout << <static_cast<double>(birds) / murders << endl;
