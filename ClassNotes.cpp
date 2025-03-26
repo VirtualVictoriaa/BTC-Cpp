@@ -452,3 +452,14 @@ int main() {
  int birds = 10;
  int murders = 3;
  cout << <static_cast<double>(birds) / murders << endl;
+
+// Topics on Test
+// 1. Functions
+// 2. Loops
+// 3. Arrays
+// 4. Structs
+// 5. Classes
+// 6. Pointers
+// 7. Recursion
+// 8. File I/O
+// 9. Vectors
