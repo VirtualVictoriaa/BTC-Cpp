@@ -1,43 +1,11 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include "Food.h"
 
 using namespace std;
+using namespace food;
 
-class Food {
-public:
-    Food(string name, int calories, vector<string> flavors);
-    int calorieCount();
-    bool hasFlavor(string flavor);
-    string name;
-private:
-    int calories;
-    vector<string> flavors;
-};
-
-// Constructor
-Food::Food(string name, int calories, vector<string> flavors) {
-    this->name = name;
-    this->calories = calories;
-    this->flavors = flavors;
-}
-
-// Get calorie count
-int Food::calorieCount() {
-    return calories;
-}
-
-// Check flavor of food
-bool Food::hasFlavor(string flavor) {
-    for (string f : flavors) {
-        if (f == flavor) {
-            return true;
-        }
-    }
-    return false;
-}
-
-// Recipe class definition
 class Recipe {
 public:
     Recipe(string name, int servings);
