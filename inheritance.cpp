@@ -38,10 +38,11 @@ public:
     }
 
     void print() override {
-        cout << "Hero Details:" << endl;
+        cout << "Hero's Secret Identity:" << endl;
         cout << "Real Name: " << realName << endl;
         cout << "Job Title: " << jobTitle << endl;
-        cout << "Hero Name: " << name << endl;
+        cout << endl;
+        cout << "But you know them as...\n" << name << endl;
         cout << "Super Powers: ";
         for (const string& power : superPowers) {
             cout << power << " ";
@@ -70,10 +71,11 @@ public:
     }
 
     void print() override {
-        cout << "Villain Details:" << endl;
+        cout << "Villain's Somewhat Secret Identity:" << endl;
         cout << "Real Name: " << realName << endl;
         cout << "Job Title: " << jobTitle << endl;
-        cout << "Villain Name: " << name << endl;
+        cout << endl;
+        cout << "But you know them as...\n" << name << endl;
         cout << "Super Powers: ";
         for (const string& power : superPowers) {
             cout << power << " ";
@@ -90,20 +92,20 @@ public:
 int main() {
     // Create a Hero
     Hero hero(
-        "Clark Kent", 
-        "Journalist", 
-        "Superman", 
-        {"Super Strength", "Flight", "X-Ray Vision"}, 
-        "Kryptonite"
+        "Seol Hee", 
+        "K-Pop Idol", 
+        "Luna Snow", 
+        {"Ice Manipulation", "Dark-Ice", "Healing-Ice", "Charm"}, 
+        "Fire"
     );
 
     // Create a Villain
     Villain villain(
-        "Lex Luthor", 
-        "CEO of LexCorp", 
-        "Lex Luthor", 
-        {"Genius Intellect", "Wealth", "Manipulation"}, 
-        "Ego"
+        "JARVIS", 
+        "Helper to Tony Stark", 
+        "Ultron", 
+        {"Robot intellect", "Technology integration", "Manipulation"}, 
+        "Humanity"
     );
 
     // Display Hero and Villain details
