@@ -34,22 +34,42 @@ public:
 // implement a linked list.
 class Linkedlist {
     Node* head;
+    Node* tail;
 
 public:
     // Default constructor
-    Linkedlist() { head = NULL; }
+    Node* head = NULL;
+    Node* tail = NULL;
+    Linkedlist()
+    {
+        this->head = head; // Initialize head to NULL
+        this->tail = tail; // Initialize tail to NULL
+    }
 
-    // Function to insert a
-    // node at the end of the
-    // linked list.
+    int findNode(int data)
+    {
+        Node* temp = head;
+        if (head == NULL) {
+            return -1;
+        }
+        int nodeOffset = 0;
+        // Traverse the list to find the node.
+        while (temp != NULL) {
+            if (temp->data == data) {
+                return nodeOffset; // Return the index if found.
+            }
+            temp = temp->next;
+            nodeOffset++;
+            temp = temp->next;
+        }
+        return -1;
+    }
+
+    // insert a node at the end of the list
     void insertNode(int);
 
-    // Function to print the
-    // linked list.
     void printList();
 
-    // Function to delete the
-    // node at given position
     void deleteNode(int);
 };
 
@@ -105,9 +125,19 @@ void Linkedlist::insertNode(int data) // Function to insert a new node.
         this->head = newNode;
         return;
     }
+    if (data < head->data) { // Insert at the beginning
+        newNode->next = head;      // Update next pointer of new node
+        head = newNode;            // Update head
+        return;
+    }
 
     Node* temp = head;          // Traverse till end of list
     while (temp->next != NULL) {
+        if (data > temp->data && data < temp->next->data) {
+            newNode->next = temp->next; // Insert in between
+            temp->next = newNode;
+            return;
+        }
         temp = temp->next;        // Update temp
     }
     temp->next = newNode;       // Insert at the last.
@@ -137,8 +167,12 @@ int main()
     Linkedlist list;
     list.insertNode(1);
     list.insertNode(2);
-    list.insertNode(3);
-    list.insertNode(4);
+    list.insertNode(70);
+    list.insertNode(93);
+    list.insertNode(10);
+    list.insertNode(64);
+    list.insertNode(15);
+    list.insertNode(42);
     std::cout << "Elements of the list are: ";
     list.printList();
     std::cout << std::endl;
@@ -146,5 +180,13 @@ int main()
     std::cout << "Elements of the list are: ";
     list.printList();
     std::cout << std::endl;
+    std::cout << "Input a number to search for: ";
+    int search;
+    std::cin >> search;
+    if (list.findNode(search) != -1) {
+        std::cout << "Found " << search << " at index: " << list.findNode(search) << std::endl;
+    } else {
+        std::cout << search << " not found in the list." << std::endl;
+    }
     return 0;
 }
