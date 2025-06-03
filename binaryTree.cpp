@@ -121,16 +121,16 @@ void printPostOrder(Node* Node) // LRN
 
 int main()
 {
-    int nums[] = {10, 5, 1, 7, 40, 50};
+    int nums[] = {10, 5, 1, 7, 40, 50};   //pre order Node Left Right NLR
     int size = sizeof(nums) / sizeof(nums[0]);
 
     Node* root = buildATree(nums, size);
 
-    printInOrder(root);
+    printInOrder(root);  // LNR
     cout << "\n";
-    printPreOrder(root);
+    printPreOrder(root);  // NLR
     cout << "\n";
-    printPostOrder(root);
+    printPostOrder(root);  // LRN
     cout << "\n";
 
     Node* found = search(root, 7, true);
