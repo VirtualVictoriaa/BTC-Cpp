@@ -3,12 +3,12 @@
 int year = 2025;
 void computerNetworking(int year) {
     if (year == 2025 ) {
-        std::cout << "WE DID IT!" << std::endl;
+        std::cout << "WE DID IT!\n";
     }
 }
 void cyberSecurity(int year) {
     if (year == 2027) {
-        std::cout << "REAL TECH PRO!" << std::endl;
+        std::cout << "REAL TECH PRO!\n";
     }
 }
 
