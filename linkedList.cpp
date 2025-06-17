@@ -35,15 +35,10 @@ public:
 class Linkedlist {
     Node* head;
     Node* tail;
-
 public:
-    // Default constructor
-    Node* head = NULL;
-    Node* tail = NULL;
-    Linkedlist()
-    {
-        this->head = head; // Initialize head to NULL
-        this->tail = tail; // Initialize tail to NULL
+    Linkedlist() {
+        head = nullptr; // Initialize head to nullptr
+        tail = nullptr; // Initialize tail to nullptr
     }
 
     int findNode(int data)
@@ -56,11 +51,10 @@ public:
         // Traverse the list to find the node.
         while (temp != NULL) {
             if (temp->data == data) {
-                return nodeOffset; // Return the index if found.
+                return nodeOffset;
             }
             temp = temp->next;
             nodeOffset++;
-            temp = temp->next;
         }
         return -1;
     }
@@ -70,50 +64,30 @@ public:
 
     void printList();
 
+    void printListReverse();
+
     void deleteNode(int);
 };
 
 // Function to delete the
 // node at given position
-void Linkedlist::deleteNode(int nodeOffset)
-{
-    Node* temp1 = head, * temp2 = NULL;
+void Linkedlist::deleteNode(int nodeOffset) {
+    if (head == nullptr) return;
+    Node* temp = head;
     int ListLen = 0;
-
-    if (head == NULL) {
-        std::cout << "List empty, head empty" << std::endl;
-        return;
-    }
-
-    while (temp1 != NULL) {         // Find length of the linked-list
-        temp1 = temp1->next;
+    while (temp && ListLen < nodeOffset) {
+        temp = temp->next;
         ListLen++;
     }
+    if (!temp) return; // Out of range
 
-    if (ListLen < nodeOffset) {         // Check if the position to be deleted is less than the length
-        std::cout << "Index out of range"
-            << std::endl;
-        return;
-    }
-    temp1 = head;           // Declare temp1
+    if (temp->prev) temp->prev->next = temp->next;
+    else head = temp->next; // Deleting head
 
-    // Deleting the head.
-    if (nodeOffset == 1) {    // Deleting the head.
-        head = head->next;    // Update head
-        delete temp1;
-        return;
-    }
+    if (temp->next) temp->next->prev = temp->prev;
+    else tail = temp->prev; // Deleting tail
 
-    // Traverse the list to
-    // find the node to be deleted.
-    while (nodeOffset-- > 0) {
-        temp2 = temp1;          // Update temp2
-        temp1 = temp1->next;    // Update temp1
-    }
-    // Change the next pointer
-    // of the previous node.
-    temp2->next = temp1->next;
-    delete temp1;           // Delete the node
+    delete temp;
 }
 
 void Linkedlist::insertNode(int data) // Function to insert a new node.
@@ -122,11 +96,12 @@ void Linkedlist::insertNode(int data) // Function to insert a new node.
     Node* newNode = new Node(data);
 
     if (head == NULL) {             // Assign to head
-        this->head = newNode;
+        head = tail = newNode;     // If list is empty, assign head and tail to new node?
         return;
     }
     if (data < head->data) { // Insert at the beginning
         newNode->next = head;      // Update next pointer of new node
+        head->prev = newNode;      // Update previous pointer of head
         head = newNode;            // Update head
         return;
     }
@@ -135,12 +110,16 @@ void Linkedlist::insertNode(int data) // Function to insert a new node.
     while (temp->next != NULL) {
         if (data > temp->data && data < temp->next->data) {
             newNode->next = temp->next; // Insert in between
+            newNode->prev = temp;       // Update previous pointer of new node
+            temp->next->prev = newNode; // Update previous pointer of next node
             temp->next = newNode;
             return;
         }
         temp = temp->next;        // Update temp
     }
     temp->next = newNode;       // Insert at the last.
+    newNode->prev = temp;       // Update previous pointer of new node
+    tail = newNode;             // Update tail to the new node
 }
 
 // Function to print the
@@ -160,6 +139,15 @@ void Linkedlist::printList()
         std::cout << temp->data << " ";
         temp = temp->next;
     }
+}
+
+void Linkedlist::printListReverse() {
+    Node* temp = tail;
+    while (temp) {
+        std::cout << temp->data << " ";
+        temp = temp->prev;
+    }
+    std::cout << std::endl;
 }
 
 int main()
